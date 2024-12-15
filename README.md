@@ -1,11 +1,11 @@
 # File Upload Service
 
-A simple file upload service built with Express.js and MongoDB that allows users to upload, download, and manage files.
+A simple file upload service built with Express.js and MySQL that allows users to upload, download, and manage files.
 
 ## Features
 
 - File upload with size and type restrictions
-- File metadata storage in MongoDB
+- File metadata storage in MySQL database
 - File download functionality
 - File deletion capability
 - Secure file handling
@@ -13,7 +13,7 @@ A simple file upload service built with Express.js and MongoDB that allows users
 ## Prerequisites
 
 - Node.js
-- MongoDB
+- MySQL
 - npm or yarn
 
 ## Installation
@@ -25,11 +25,17 @@ A simple file upload service built with Express.js and MongoDB that allows users
    ```
 3. Create a .env file with the following variables:
    ```
-   PORT=3000
-   MONGODB_URI=mongodb://localhost:27017/fileupload
+   PORT=3001
+   DB_HOST=localhost
+   DB_USER=root
+   DB_PASSWORD=
+   DB_NAME=fileupload
    MAX_FILE_SIZE=5242880
    ```
-4. Start MongoDB service
+4. Set up MySQL database:
+   ```bash
+   mysql -u root -p < database/schema.sql
+   ```
 5. Run the application:
    ```bash
    npm start
@@ -44,11 +50,11 @@ A simple file upload service built with Express.js and MongoDB that allows users
 
 ### Download File
 - GET `/api/download/:id`
-- Downloads a file using its MongoDB ID
+- Downloads a file using its MySQL file ID
 
 ### Delete File
 - DELETE `/api/delete/:id`
-- Deletes a file and its metadata using its MongoDB ID
+- Deletes a file and its metadata using its MySQL file ID
 
 ### List Files
 - GET `/api/files`
